@@ -9,15 +9,19 @@
        <script type="text/javascript" src="jquery.lazyload.js"></script>
        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="imagesloaded-master/imagesloaded.js"></script>
-      
+        <script type="text/javascript" src="imagesloaded-master/imagesloaded.pkgd.min.js"></script>
+
       
         <script>
         $(document).ready(function() {
             
-          
+          $(".picture img").each(function(){
+                    $(this).imagesLoaded(function(){
+                        $('.picture').cycle(); 
+                        });
+                  });
             
-            $('.picture').cycle(); 
+//            $('.picture').cycle(); 
             
         })
         </script>
@@ -106,14 +110,11 @@
         $(".collide").hide();
 //        $(document).ready(function(){
     var Hiden = true;	/*控制切换菜单*/
+
         $(document).ready(function()
             {
-//                  $(".picture").each(function(){
-//                        $(this).imagesLoaded(function(){
-//                        console.log('loaded!!');
-//                        });
-//                  });
-//                 
+                 
+                
                 $('.leftline').click(function(){
                     if(Hiden){
 			             $('.leftline').animate({left:'+=380px'});//菜单块向右移动
