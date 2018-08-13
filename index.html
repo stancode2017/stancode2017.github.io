@@ -8,17 +8,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
        <script type="text/javascript" src="jquery.lazyload.js"></script>
        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-        
-            
-       
-       
-       <script type="text/javascript" src="jquery.cycle.all.js"></script>
-       <script type="text/javascript">
+        <script type="text/javascript" src="jquery.cycle.all.js"></script>
+        <script type="text/javascript" src="imagesloaded-master/imagesloaded.js"></script>
+      
+      
+        <script>
         $(document).ready(function() {
-        $('.picture').cycle();
-        $( "img" ).lazyload();
-        });
-       </script>
+            
+          
+            
+            $('.picture').cycle(); 
+            
+        })
+        </script>
+     
     
     </head>
     <body>
@@ -52,17 +55,17 @@
         </div>
         
         <div  class="picture" style="position: absolute;top: 75px; height: 500px ; width: 100% ; z-index: 0;">
-                <img src="background/abendstimmung-atmospheric-background-531872.png" style="height: 500px;width: 100%;">
-                <img src="background/adventure-alpine-altitude-355241.png" style="height: 500px;width: 100%;">
-                <img src="background/adventure-alps-background-207195.png" style="height: 500px;width: 100%;">
-                <img src="background/adventure-calm-clouds-414171.png" style="height: 500px;width: 100%;">
-                <img src="background/adventure-cold-daylight-291732.png" style="height: 500px;width: 100%;">
-                <img src="background/alberta-amazing-attraction-417074.png" style="height: 500px;width: 100%;">
-                <img src="background/altitude-clouds-cold-417173.png" style="height: 500px;width: 100%;">
-                <img src="background/astronomy-cosmos-crater-lake-national-park-262669.png" style="height: 500px;width: 100%;">
-                <img src="background/beach-coast-idyllic-162969.png" style="height: 500px;width: 100%;">
-                <img src="background/cascade-clouds-cool-wallpaper-210186.png" style="height: 500px;width: 100%;">
-                <img src="background/clouds-country-daylight-371633.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg"src="background/abendstimmung-atmospheric-background-531872.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/adventure-alpine-altitude-355241.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/adventure-alps-background-207195.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/adventure-calm-clouds-414171.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/adventure-cold-daylight-291732.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/alberta-amazing-attraction-417074.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/altitude-clouds-cold-417173.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/astronomy-cosmos-crater-lake-national-park-262669.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/beach-coast-idyllic-162969.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/cascade-clouds-cool-wallpaper-210186.png" style="height: 500px;width: 100%;">
+                <img  class="titleimg" src="background/clouds-country-daylight-371633.png" style="height: 500px;width: 100%;">
             
                 
             </div>
@@ -105,7 +108,12 @@
     var Hiden = true;	/*控制切换菜单*/
         $(document).ready(function()
             {
-      
+//                  $(".picture").each(function(){
+//                        $(this).imagesLoaded(function(){
+//                        console.log('loaded!!');
+//                        });
+//                  });
+//                 
                 $('.leftline').click(function(){
                     if(Hiden){
 			             $('.leftline').animate({left:'+=380px'});//菜单块向右移动
