@@ -17,11 +17,14 @@
             
           $(".picture img").each(function(){
                     $(this).imagesLoaded(function(){
-                        $('.picture').cycle(); 
-                        });
+                    $('.picture').cycle().stop(); 
+                    $('.picture').cycle(); 
+                    
+                 
+                    });
                   });
             
-//            $('.picture').cycle(); 
+                    
             
         })
         </script>
