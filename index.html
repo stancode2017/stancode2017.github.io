@@ -14,25 +14,75 @@
       
         <script>
         $(document).ready(function() {
+            alert("歡 迎 您 ~ ~ ~");
+            $(".collide").hide();
             
-          $(".picture img").each(function(){
+             var Hiden = true;	/*控制切换菜单*/
+             var count =0;
+             var counttop =0;
+        
+            $('.leftline').click(function(){
+                    if(Hiden){
+			             $('.leftline').animate({left:'+=380px'});//菜单块向右移动
+                    }else{
+			             $('.leftline').animate({left:'-=380px'}); //菜单块向左移动
+		                  }
+		              Hiden = !Hiden;
+            });       
+       
+                   
+          $(".picture-top img").each(function(){
+       
                     $(this).imagesLoaded(function(){
-                    $('.picture').cycle().stop(); 
-                    $('.picture').cycle(); 
-                    
-                 
+                        
+                        $(".picture-top").cycle()
+
+
+
+                        
+                        
+                                     
+                    });
+                        $(".picture-top").cycle("stop")
+                  });
+         $(".picture-bottom img").imagesLoaded(function(){
+                   
+                        $(".spinner").fadeOut(1000);
+                        $(".picture-top").fadeOut(10);
+                        $(".leftline").fadeIn(4000);
+                        $(".headtitle").fadeIn(4000);
+                        $(".picture-top").fadeIn(6000);
+                        $("article").fadeIn(4000);
+                        $(".picture-bottom").fadeIn(4000);
+                        $("section").fadeIn(4000);
+                        $("footer").fadeIn(4000);
+                        
+                        
+ 
+                   
+                                     
                     });
                   });
             
-                    
-            
-        })
+          
+        
         </script>
      
     
     </head>
-    <body>
-     
+    
+         <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+            </div>
+    <div class="headtitle">
+        <a 
+           class="headtitle_a" href="index.html" >飄 逸 梅 心</a>
+        
+        </div>
+    <body class="body">
+        
+        
          <div class="leftline">
             <section class="leftline_section">
                 <a href="Game.html">
@@ -55,13 +105,9 @@
         
         
         
-        <div class="headtitle">
-        <a 
-           class="headtitle_a" href="index.html" >飄 逸 梅 心</a>
         
-        </div>
         
-        <div  class="picture" style="position: absolute;top: 75px; height: 500px ; width: 100% ; z-index: 0;">
+        <div  class="picture-top" style="position: absolute;top: 75px; height: 500px ; width: 100% ; z-index: 0; overflow: hidden;">
                 <img  class="titleimg"src="background/abendstimmung-atmospheric-background-531872.png" style="height: 500px;width: 100%;">
                 <img  class="titleimg" src="background/adventure-alpine-altitude-355241.png" style="height: 500px;width: 100%;">
                 <img  class="titleimg" src="background/adventure-alps-background-207195.png" style="height: 500px;width: 100%;">
@@ -93,7 +139,7 @@
         </section>
        
         </article>
-         <section style="position: absolute;top: 2100px;">
+         <section class="picture-bottom"style="position: absolute;top: 2100px;">
             <img style="height: 250px; width: 33%;" src="./background/abendstimmung-atmospheric-background-531872.png">    
             <img style="height: 250px; width: 33%;" src="./background/bark-close-up-cute-34533.png">
             <img style="height: 250px; width: 33%;" src="./background/adventure-calm-clouds-414171.png">
@@ -101,36 +147,95 @@
             
         </section>
     </body>
-        <footer style="background:rgb(31, 31, 35); width: 100%; height: 120px;position: absolute; top:2353px; ">
+        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 120px;position: absolute; top:2353px; ">
           
             <a href="mailto:appie1236547989@gmail.com" style="color:  rgb(222, 222, 224); cursor: pointer; font-size: 20; line-height: 5 ;padding: 20 ;">聯絡我們 დ</a>
         
         </footer>
     
     
-    <script>
-        alert("歡 迎 您 ~ ~ ~");
-        $(".collide").hide();
-//        $(document).ready(function(){
-    var Hiden = true;	/*控制切换菜单*/
-
-        $(document).ready(function()
-            {
-                 
-                
-                $('.leftline').click(function(){
-                    if(Hiden){
-			             $('.leftline').animate({left:'+=380px'});//菜单块向右移动
-                    }else{
-			             $('.leftline').animate({left:'-=380px'}); //菜单块向左移动
-		                  }
-		              Hiden = !Hiden;
-            });        
-        })
     
-//});
-    </script>
     <style>
+    
+        .leftline
+        {
+            display: none;
+        }
+        .headtitle
+        {
+            display: none;
+        }
+       
+        article
+        {
+            display: none;
+        }
+        .picture-bottom
+        {
+            display: none;
+        }
+        section
+        {
+            display: none;
+        }
+        .footer
+        {
+            display: none;
+        }
+
+        .spinner {  
+                            width: 100%;
+                            height: 100%;
+                            background-color: cornflowerblue;
+                            position: absolute;
+                            z-index: 100;
+                            
+                            
+                        }
+
+            .double-bounce1, .double-bounce2 {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        background-color: aquamarine;
+                        opacity: 0.7;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        margin-top: -50px;
+                        margin-left: -50px;
+                        
+                
+                
+                        -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+                        animation: sk-bounce 2.0s infinite ease-in-out;
+                }
+
+            .double-bounce2 {
+                        -webkit-animation-delay: -1.0s;       
+                        animation-delay: -1.0s;
+                    }
+
+            @-webkit-keyframes sk-bounce {
+                        0%, 100% { -webkit-transform: scale(0.0) }
+                        50% { -webkit-transform: scale(1.0) }
+                    }
+
+            @keyframes sk-bounce {
+                    0%, 100% { 
+                    transform: scale(0.0);
+                    -webkit-transform: scale(0.0);
+                } 50% { 
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+                }
+                        }
+        
+        
+        
+        
+        
+        
         a
         {
             text-decoration: none;
