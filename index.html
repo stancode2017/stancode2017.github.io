@@ -54,7 +54,9 @@
                         
                   });
          $(".picture-bottom img").imagesLoaded(function(){
-                   
+                   if (counttop>=1)
+                       {
+                    
                         $(".spinner").fadeOut(1000);
                         $(".picture-top").fadeOut(10);
                         $(".leftline").fadeIn(4000);
@@ -68,8 +70,8 @@
                         $("section").fadeIn(4000);
                         $("footer").fadeIn(4000);
                         
-                        
- 
+                       }
+                    
                    
                                      
                     });
