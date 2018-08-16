@@ -11,23 +11,30 @@
         <script type="text/javascript" src="jquery.cycle.all.js"></script>
         <script type="text/javascript" src="imagesloaded-master/imagesloaded.pkgd.min.js"></script>
 
-      
+       
+
+        
         <script>
         $(document).ready(function() {
-            alert("歡 迎 您 ~ ~ ~");
-            $(".collide").hide();
             
+            $(".collide").hide();
+             var mouse = true;
+             var touch = true;
              var Hiden = true;	/*控制切换菜单*/
              var count =0;
              var counttop =0;
-        
+     
             $('.leftline').click(function(){
+                
                     if(Hiden){
 			             $('.leftline').animate({left:'+=380px'});//菜单块向右移动
+                          
                     }else{
 			             $('.leftline').animate({left:'-=380px'}); //菜单块向左移动
+                          
 		                  }
 		              Hiden = !Hiden;
+                 
             });       
        
                    
@@ -41,8 +48,13 @@
                         
                         var image = document.createElement("img");
                         image.src=$(".text-picture").find("img").filter("."+counttop).attr("src")
-                        image.height=$(".text-picture").data("height");
-                        image.width=$(".text-picture").data("width");
+                        var height=$(".text-picture").find("img").filter("."+counttop).height()
+                        var width=$(".text-picture").find("img").filter("."+counttop).width()
+                        image.style.height="500px"
+                        image.style.width="100%"
+                       
+                        
+                         
                         
                         
                          $(".picture-top").append(image)
@@ -56,7 +68,9 @@
          $(".picture-bottom img").imagesLoaded(function(){
                    if (counttop>=1)
                        {
-                    
+                        
+                                
+                        
                         $(".spinner").fadeOut(1000);
                         $(".picture-top").fadeOut(10);
                         $(".leftline").fadeIn(4000);
@@ -69,6 +83,43 @@
                         $(".picture-bottom").fadeIn(4000);
                         $("section").fadeIn(4000);
                         $("footer").fadeIn(4000);
+                       
+                        $(document).dblclick(function()
+                            {
+                                    if(touch)
+                                    {
+                                        if($(".headtitle").offset().top>100  )
+                                            {
+                                                $(".headtitle").animate({top:"-=100px"}); 
+                                                touch = !touch;   
+                                            }
+                                        
+                                        
+                                    }
+                                    else
+                                    {
+                                        
+                                        
+                                                $(".headtitle").animate({top:"+=100px"});   
+                                                touch = !touch;   
+                                        
+                                        
+                                        
+                                    }
+                           
+                                 
+                                
+                                 
+                        })
+                         
+                           
+                                 
+                                
+                                 
+                        
+                            
+                            
+                            
                         
                        }
                     
@@ -78,7 +129,7 @@
                   });
             
           
-        
+             
         </script>
      
     
