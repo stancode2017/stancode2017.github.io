@@ -15,13 +15,13 @@
             <script>
                     function fade ()
                         {
-                             $(".spinner").fadeOut(1000);
+                        $(".spinner").fadeOut(1000);
                         $(".picture-top").fadeOut(10);
                         $(".leftline").fadeIn(4000);
                         $(".headtitle").fadeIn(4000);
                         $(".picture-top").fadeIn(6000);
                             console.log("-------")
-                        $(".picture-top").cycle();
+                        
                         
                        
                         $("article").fadeIn(4000);
@@ -42,7 +42,7 @@
              var Hiden = true;	/*控制切换菜单*/
              var count =0;
              var counttop =0;
-        
+             var  rand1 = Math.floor(Math.random()*11);
             
             $('.leftline').click(function(){
                 
@@ -57,39 +57,7 @@
                  
             });       
             
-       
-                   
-                   
-                           
-                        
-                        
-                           
-                                 
-                                
-                                 
-                        
-                            
-                            
-                            
-                        
-         
-                    
-                   
-                                     
-                
-            
-          $(".text-picture img").each(function(){
-                       
-            
-                    $(this).imagesLoaded(function(){
-                        
-                     
-                       counttop++;
-                        if (counttop==1)
-                            {
-                                    fade();
-                     
-                        $(document).dblclick(function()
+       $(document).dblclick(function()
                             {
                                     if(touch)
                                     {
@@ -111,29 +79,38 @@
                                     }                               
                                  
                         })
+                   
+                   
+                        
+                              fade();
                          
-                }
-                        var image = document.createElement("img");
-                        image.src=$(".text-picture").find("img").filter("."+counttop).attr("src")
-                        var height=$(".text-picture").find("img").filter("."+counttop).height()
-                        var width=$(".text-picture").find("img").filter("."+counttop).width()
-                        image.style.height="500px"
-                        image.style.width="100%"
+                         
+                     
+                                var image = document.createElement("img");
+                                image.src=$(".text-picture").find("img").filter("."+rand1).attr("src")
+                                var height=$(".text-picture").find("img").filter("."+rand1).height()
+                                var width=$(".text-picture").find("img").filter("."+rand1).width()
+                                image.style.height="500px"
+                                image.style.width="100%"
                        
                         
                          
                         
                         
-                         $(".picture-top").append(image)
-                        console.log($(".picture-top").find("img"))
+                                $(".picture-top").append(image)
+                                console.log($(".picture-top").find("img"))    
+                                console.log(rand1)
+                        
+                       
+                        
 //                        console.log($(".text-picture").find("img").filter("."+counttop).attr("src"))
 //                        console.log($(".text-picture").find("img").filter("."+counttop).attr("class"))
 
                         });
                         
-                  });
+             
         
-                  });
+
             
           
              
@@ -198,18 +175,18 @@
                 
             </div>
             <div class="text-picture" data-width=1000 data-height=500>
-                <img  class="1" src="background/adventure-alpine-altitude-355241.png" style="height: 500px;width: 100%;">
-                <img  class="2"src="background/abendstimmung-atmospheric-background-531872.png" style="height: 500px;width: 100%;">
-                <img  class="3" src="background/adventure-alps-background-207195.png" style="height: 500px;width: 100%;">
-                <img  class="4" src="background/adventure-calm-clouds-414171.png" style="height: 500px;width: 100%;">
-                <img  class="5" src="background/adventure-cold-daylight-291732.png" style="height: 500px;width: 100%;">
-                <img  class="6" src="background/alberta-amazing-attraction-417074.png" style="height: 500px;width: 100%;">
-                <img  class="7" src="background/altitude-clouds-cold-417173.png" style="height: 500px;width: 100%;">
-                <img  class="8" src="background/astronomy-cosmos-crater-lake-national-park-262669.png" style="height: 500px;width: 100%;">
-                <img  class="9" src="background/beach-coast-idyllic-162969.png" style="height: 500px;width: 100%;">
-                <img  class="10" src="background/cascade-clouds-cool-wallpaper-210186.png" style="height: 500px;width: 100%;">
-                <img  class="11" src="background/clouds-country-daylight-371633.png" style="height: 500px;width: 100%;">
-                <img  class="12" src="background/clouds-country-daylight-371633.png" style="height: 500px;width: 100%;">
+                <img  class="0" src="background/adventure-alpine-altitude-355241.png" style="height: 500px;width: 100%;">
+                <img  class="1"src="background/abendstimmung-atmospheric-background-531872.png" style="height: 500px;width: 100%;">
+                <img  class="2" src="background/adventure-alps-background-207195.png" style="height: 500px;width: 100%;">
+                <img  class="3" src="background/adventure-calm-clouds-414171.png" style="height: 500px;width: 100%;">
+                <img  class="4" src="background/adventure-cold-daylight-291732.png" style="height: 500px;width: 100%;">
+                <img  class="5" src="background/alberta-amazing-attraction-417074.png" style="height: 500px;width: 100%;">
+                <img  class="6" src="background/altitude-clouds-cold-417173.png" style="height: 500px;width: 100%;">
+                <img  class="7" src="background/astronomy-cosmos-crater-lake-national-park-262669.png" style="height: 500px;width: 100%;">
+                <img  class="8" src="background/beach-coast-idyllic-162969.png" style="height: 500px;width: 100%;">
+                <img  class="9" src="background/cascade-clouds-cool-wallpaper-210186.png" style="height: 500px;width: 100%;">
+                <img  class="10" src="background/clouds-country-daylight-371633.png" style="height: 500px;width: 100%;">
+              
         
         
             </div>
@@ -228,7 +205,7 @@
             
         
         </section>
-       
+        
         </article>
          <section class="picture-bottom"style="position: absolute;top: 2100px;">
             <img style="height: 250px; width: 33%;" src="./background/abendstimmung-atmospheric-background-531872.png">    
