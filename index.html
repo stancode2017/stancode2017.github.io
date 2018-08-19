@@ -2,6 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
+         <meta property=”fb:admins” content="100003857192774"/>
+
+        <meta property=”fb:app_id” content="1793440414106755"/>
         <title>stanhtml (By 小松)</title>
         
       
@@ -10,8 +13,7 @@
        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="jquery.cycle.all.js"></script>
         <script type="text/javascript" src="imagesloaded-master/imagesloaded.pkgd.min.js"></script>
-
-       
+        
             <script>
                     function fade ()
                         {
@@ -25,25 +27,68 @@
                         
                        
                         $("article").fadeIn(4000);
-                        $(".picture-bottom").fadeIn(4000);
                         $("section").fadeIn(4000);
                         $("footer").fadeIn(4000);
-                       
+                        
                         }
                 
             </script>
+           <script>
+  window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '{1793440414106755}',
+                cookie     : true,
+                xfbml      : true,
+                version    : '{api-version}'
+            });
+      
+        FB.AppEvents.logPageView();   
+      
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
       
         <script>
         $(document).ready(function() {
-             
+          window.onbeforeunload = function(){
+          //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+        } 
+          
+           $.ajaxSetup({ cache: true });
+                        $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+                        FB.init({
+                            appId: '{1793440414106755}',
+                            version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+                        });     
+                        $('#loginbutton,#feedbutton').removeAttr('disabled');
+                        FB.getLoginStatus(updateStatusCallback);
+                });  
+          
             $(".collide").hide();
              var mouse = true;
              var touch = true;
              var Hiden = true;	/*控制切换菜单*/
              var count =0;
              var counttop =0;
-             var  rand1 = Math.floor(Math.random()*11);
+             var randp = Math.floor(Math.random()*11);
+             var question = ["hospital","telescope","suburbs"]
+             var answer   = ["醫院","望遠鏡","郊區"]
+             var randq = Math.floor(Math.random()*($(question).length));
+             console.log(randq) 
+            var noaction=1;
+            var detailedsd=false;
+            var correct   =false;
             
+           
             $('.leftline').click(function(){
                 
                     if(Hiden){
@@ -87,9 +132,9 @@
                          
                      
                                 var image = document.createElement("img");
-                                image.src=$(".text-picture").find("img").filter("."+rand1).attr("src")
-                                var height=$(".text-picture").find("img").filter("."+rand1).height()
-                                var width=$(".text-picture").find("img").filter("."+rand1).width()
+                                image.src=$(".text-picture").find("img").filter("."+randp).attr("src")
+                                var height=$(".text-picture").find("img").filter("."+randp).height()
+                                var width=$(".text-picture").find("img").filter("."+randp).width()
                                 image.style.height="500px"
                                 image.style.width="100%"
                        
@@ -99,23 +144,77 @@
                         
                                 $(".picture-top").append(image)
                                 console.log($(".picture-top").find("img"))    
-                                console.log(rand1)
+                                console.log(randp)
                         
                        
                         
 //                        console.log($(".text-picture").find("img").filter("."+counttop).attr("src"))
 //                        console.log($(".text-picture").find("img").filter("."+counttop).attr("class"))
+                                
+                                $(".question").text(question[randq])
+                                $(".detailed1").text(answer[randq])
+          
+                                
+            
+                                $(".answer").click(function()
+                                    {
+                                  
+                                        correct=false;
+                                        console.log(answer[randq])
+                                        noaction=1;
+                                        if($(".answer").val())
+                                            {
+                                                if($(".answer").val()==answer[randq])
+                                                    {
+                                                        correct=true;
+                                                        $(".answer").val("correct!!!").fadeIn(5000)
+                                                    }
+                                                
+                                                if($(".answer").val()!="correct!!!"&&$(".answer").val() && detailedsd==false && correct==false)
+                                                            {
+                                                                
+                                                                noaction =0;
+                                                                $(".detailed1").text(answer[randq])
+                                                                $(".detailed").slideDown();
+                                                                $(".detailed1").slideDown();
+                                                                 detailedsd=true;
+                                                            }
+                                                    
+                                            
+                                                
+                                                if(detailedsd==true)
+                                                    {
+                                                        if(noaction==1)
+                                                            {
+                                                            $(".detailed").slideUp();
+                                                            $(".detailed1").slideUp();
+                                                            randq=Math.floor(Math.random()*            ($(question).length));
+                                                            $(".question").text(question[randq])
+                                                            $(".answer").val("")
+                                                            detailedsd=false
+                                                            }
+                                                    }
+                                                if($(".answer").val()=="correct!!!" && correct==false)
+                                                    {
+                                                        randq=Math.floor(Math.random()*($(question).length));
+                                                         $(".question").text(question[randq])
+                                                          $(".detailed1").text(answer[randq])
+                                                        $(".answer").val("")
+                                                    }
+                                            }
+                                    
+                                })
 
+                                   
                         });
                         
              
-        
-
+            
             
           
              
         </script>
-     
+       
     
     </head>
     
@@ -205,18 +304,26 @@
             
         
         </section>
+        <p style="line-height: 300px; font-size: 30; position: absolute; left: 45%;margin-left: -95px;color:cadetblue; ;"><img style="height: 40px; width: 50px; margin-right: 20px" src="./background/bark-close-up-cute-34533.png">英文單字 練習 ~<img style="height: 40px; width: 50px; margin-left: +20px" src="./background/bark-close-up-cute-34533.png"></p>
         
+        <p style="line-height: 500px; font-size: 30; position: absolute; left: 47%;margin-left: -95px;color:cornflowerblue; -webkit-border-radius:5px; border-radius: 5px; ">Question : </p>
+        <p  class="question"style="line-height: 505px; font-size: 30; position: absolute; left: 50%;margin-left: +50px; color:darksalmon; "></p>
+        <p style="line-height: 700px; font-size: 30; position: absolute; left: 40%;margin-left: -90px;color:cornflowerblue; ">Answer : <input class="answer" type="text" placeholder="輸入後請點我"style="margin-left: +50px;background-color: aquamarine;font-size: 30;width: 50%; color:orange; border-radius: 5px;text-align: center;"></p>
+        <p class="detailed"style="line-height: 900px; font-size: 30; position: absolute; left: 50%;margin-left: -40px;color:fuchsia; ">正 確 答 案 :</p>
+        <p class="detailed1"style="line-height: 1100px; font-size: 30; position: absolute; left: 50%;margin-left: +10px;color:cadetblue; "></p>
         </article>
-         <section class="picture-bottom"style="position: absolute;top: 2100px;">
-            <img style="height: 250px; width: 33%;" src="./background/abendstimmung-atmospheric-background-531872.png">    
-            <img style="height: 250px; width: 33%;" src="./background/bark-close-up-cute-34533.png">
-            <img style="height: 250px; width: 33%;" src="./background/adventure-calm-clouds-414171.png">
-            
-            
-        </section>
-        
+   <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/zh_HK/sdk.js#xfbml=1&version=v3.1&appId=1793440414106755&autoLogAppEvents=1';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+       <div class="fb-comments" data-href="https://stancode2017.github.io/" data-numposts="5"></div>
     </body>
-        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 120px;position: absolute; top:2353px; ">
+        
+        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 120px;position: absolute; top:2110px; ">
           
             <a href="mailto:appie1236547989@gmail.com" style="color:  rgb(222, 222, 224); cursor: pointer; font-size: 20; line-height: 5 ;padding: 20 ;">聯絡我們 დ</a>
         
@@ -376,6 +483,14 @@
             color: cadetblue;
 
         }   
+        .detailed
+        {
+            display: none;
+        }
+        .detailed1
+        {
+            display: none;
+        }
     </style>
     
     
