@@ -63,15 +63,7 @@
         document.body.scrollTop = 0;  //非ie
         } 
           
-           $.ajaxSetup({ cache: true });
-                        $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
-                        FB.init({
-                            appId: '{1793440414106755}',
-                            version: 'v2.7' // or v2.1, v2.2, v2.3, ...
-                        });     
-                        $('#loginbutton,#feedbutton').removeAttr('disabled');
-                        FB.getLoginStatus(updateStatusCallback);
-                });  
+        
           
             $(".collide").hide();
              var mouse = true;
@@ -80,14 +72,22 @@
              var count =0;
              var counttop =0;
              var randp = Math.floor(Math.random()*11);
-             var question = ["hospital","telescope","suburbs"]
-             var answer   = ["醫院","望遠鏡","郊區"]
-             var randq = Math.floor(Math.random()*($(question).length));
-             console.log(randq) 
-            var noaction=1;
-            var detailedsd=false;
-            var correct   =false;
-            
+             var en = ["hospital","telescope","suburbs"]
+             var ch   = ["醫院","望遠鏡","郊區"]
+             var randqch = Math.floor(Math.random()*($(en).length));
+             var noactionch=1;
+             var detailedsdch=false;
+             var correctch   =false;
+             var yetchangech=randqch ;
+             var randqeg = Math.floor(Math.random()*($(ch).length));
+             do 
+                 {
+                     randqeg = Math.floor(Math.random()*($(ch).length));
+                 }while(randqeg==randqch)
+             var noactioneg=1;
+             var detailedsdeg=false;
+             var correcteg   =false;
+             var yetchangeeg=randqch ;
            
             $('.leftline').click(function(){
                 
@@ -151,58 +151,120 @@
 //                        console.log($(".text-picture").find("img").filter("."+counttop).attr("src"))
 //                        console.log($(".text-picture").find("img").filter("."+counttop).attr("class"))
                                 
-                                $(".question").text(question[randq])
-                                $(".detailed1").text(answer[randq])
+                                $(".questionch").text(en[randqch])
+                                $(".detailedanswerch").text(ch[randqch]) 
+                                $(".questioneg").text(ch[randqeg])
+                                $(".detailedanswereg").text(en[randqeg])
           
                                 
-            
-                                $(".answer").click(function()
+                                
+                                $(".answerch").click(function()
                                     {
-                                  
-                                        correct=false;
-                                        console.log(answer[randq])
-                                        noaction=1;
-                                        if($(".answer").val())
+                                       
+                                       
+                                        correctch=false;
+                                        noactionch=1;
+                                        if($(".answerch").val())
                                             {
-                                                if($(".answer").val()==answer[randq])
+                                                if($(".answerch").val()==ch[randqch])
                                                     {
-                                                        correct=true;
-                                                        $(".answer").val("correct!!!").fadeIn(5000)
+                                                        correctch=true;
+                                                        $(".answerch").val("correct!!!").fadeIn(5000)
                                                     }
                                                 
-                                                if($(".answer").val()!="correct!!!"&&$(".answer").val() && detailedsd==false && correct==false)
+                                                if($(".answerch").val()!="correct!!!"&&$(".answerch").val() && detailedsdch==false && correctch==false)
                                                             {
                                                                 
-                                                                noaction =0;
-                                                                $(".detailed1").text(answer[randq])
-                                                                $(".detailed").slideDown();
-                                                                $(".detailed1").slideDown();
-                                                                 detailedsd=true;
+                                                                noactionch =0;
+                                                                $(".detailedanswerch").text(ch[randqch])
+                                                                $(".detailedch").slideDown();
+                                                                $(".detailedanswerch").slideDown();
+                                                                 detailedsdch=true;
                                                             }
                                                     
                                             
                                                 
-                                                if(detailedsd==true)
+                                                if(detailedsdch==true)
                                                     {
-                                                        if(noaction==1)
+                                                        if(noactionch==1)
                                                             {
-                                                            $(".detailed").slideUp();
-                                                            $(".detailed1").slideUp();
-                                                            randq=Math.floor(Math.random()*            ($(question).length));
-                                                            $(".question").text(question[randq])
-                                                            $(".answer").val("")
-                                                            detailedsd=false
+                                                            $(".detailedch").slideUp();
+                                                            $(".detailedanswerch").slideUp();
+                                                            do
+                                                            {randqch=Math.floor(Math.random()*            ($(en).length));
+                                                            }while(randqch==yetchangech)               
+                                                            yetchangech=randqch;
+                                                            $(".questionch").text(en[randqch])
+                                                            $(".answerch").val("")
+                                                            detailedsdch=false
                                                             }
                                                     }
-                                                if($(".answer").val()=="correct!!!" && correct==false)
+                                                if($(".answerch").val()=="correct!!!" && correctch==false)
                                                     {
-                                                        randq=Math.floor(Math.random()*($(question).length));
-                                                         $(".question").text(question[randq])
-                                                          $(".detailed1").text(answer[randq])
-                                                        $(".answer").val("")
+                                                        do
+                                                            {randqch=Math.floor(Math.random()*            ($(en).length));
+                                                            }while(randqch==yetchangech)
+                                                        yetchangech=randqch;
+                                                         $(".questionch").text(en[randqch])
+                                                          $(".detailedanswerch").text(ch[randqch])
+                                                        $(".answerch").val("")
                                                     }
                                             }
-                                    
+                               
+                                }) 
+                                $(".answereg").click(function()
+                                    {
+                                       
+                                       
+                                        correcteg=false;
+                                        noactioneg=1;
+                                        if($(".answereg").val())
+                                            {
+                                                if($(".answereg").val()==en[randqeg])
+                                                    {
+                                                        correcteg=true;
+                                                        $(".answereg").val("correct!!!").fadeIn(5000)
+                                                    }
+                                                
+                                                if($(".answereg").val()!="correct!!!"&&$(".answereg").val() && detailedsdeg==false && correcteg==false)
+                                                            {
+                                                                
+                                                                noactioneg =0;
+                                                                $(".detailedanswereg").text(en[randqeg])
+                                                                $(".detailedeg").slideDown();
+                                                                $(".detailedanswereg").slideDown();
+                                                                 detailedsdeg=true;
+                                                            }
+                                                    
+                                            
+                                                
+                                                if(detailedsdeg==true)
+                                                    {
+                                                        if(noactioneg==1)
+                                                            {
+                                                            $(".detailedeg").slideUp();
+                                                            $(".detailedanswereg").slideUp();
+                                                            do
+                                                            {randqeg=Math.floor(Math.random()*            ($(ch).length));
+                                                            }while(randqeg==yetchangeeg)               
+                                                            yetchangeeg=randqeg;
+                                                            $(".questioneg").text(ch[randqeg])
+                                                            $(".answereg").val("")
+                                                            detailedsdeg=false
+                                                            }
+                                                    }
+                                                if($(".answereg").val()=="correct!!!" && correcteg==false)
+                                                    {
+                                                        do
+                                                            {randqeg=Math.floor(Math.random()*            ($(ch).length));
+                                                            }while(randqeg==yetchangeeg)
+                                                        yetchangeeg=randqeg;
+                                                         $(".questioneg").text(ch[randqeg])
+                                                          $(".detailedanswereg").text(en[randqeg])
+                                                        $(".answereg").val("")
+                                                    }
+                                            }
+                               
                                 })
 
                                    
@@ -291,7 +353,7 @@
             </div>
         
         
-        <article style="height:1500px;width: 100%; background: rgba(244, 185, 66,0.3);position: absolute;top: 600px;" >
+        <article style="height:1800px;width: 100%; background: rgba(244, 185, 66,0.3);position: absolute;top: 600px;" >
            
             <section style="background: rgba(200, 244, 66,0.4); height: 400px; width: 35%; text-align:center">
             <h1 style="background: pink; color: gray; width: 15%;height: 50px;line-height: 3;">簡介</h1>
@@ -304,14 +366,22 @@
             
         
         </section>
-        <p style="line-height: 300px; font-size: 30; position: absolute; left: 45%;margin-left: -95px;color:cadetblue; ;"><img style="height: 40px; width: 50px; margin-right: 20px" src="./background/bark-close-up-cute-34533.png">英文單字 練習 ~<img style="height: 40px; width: 50px; margin-left: +20px" src="./background/bark-close-up-cute-34533.png"></p>
+        <p style="line-height: 500px; font-size: 30; position: absolute; left: 5%;margin-left: -10px;color:cadetblue; ;"><img style="height: 40px; width: 50px; margin-right: 20px" src="./background/bark-close-up-cute-34533.png">英文單字 中文 練習 ~<img style="height: 40px; width: 50px; margin-left: +20px" src="./background/bark-close-up-cute-34533.png"></p>
         
-        <p style="line-height: 500px; font-size: 30; position: absolute; left: 47%;margin-left: -95px;color:cornflowerblue; -webkit-border-radius:5px; border-radius: 5px; ">Question : </p>
-        <p  class="question"style="line-height: 505px; font-size: 30; position: absolute; left: 50%;margin-left: +50px; color:darksalmon; "></p>
-        <p style="line-height: 700px; font-size: 30; position: absolute; left: 40%;margin-left: -90px;color:cornflowerblue; ">Answer : <input class="answer" type="text" placeholder="輸入後請點我"style="margin-left: +50px;background-color: aquamarine;font-size: 30;width: 50%; color:orange; border-radius: 5px;text-align: center;"></p>
-        <p class="detailed"style="line-height: 900px; font-size: 30; position: absolute; left: 50%;margin-left: -40px;color:fuchsia; ">正 確 答 案 :</p>
-        <p class="detailed1"style="line-height: 1100px; font-size: 30; position: absolute; left: 50%;margin-left: +10px;color:cadetblue; "></p>
+        <p style="line-height: 700px; font-size: 30; position: absolute; left: 10%;margin-left: -30px;color:cornflowerblue; -webkit-border-radius:5px; border-radius: 5px; ">Question : </p>
+        <p  class="questionch"style="line-height: 705px; font-size: 30; position: absolute; left: 15%;margin-left: +80px; color:darksalmon; "></p>
+        <p style="line-height: 900px; font-size: 30; position: absolute; left: 5%;margin-left: +0px;color:cornflowerblue; ">Answer : <input class="answerch" type="text" name="ch"style="margin-left: +50px;background-color: aquamarine;font-size: 30;width: 50%; color:orange; border-radius: 5px;text-align: center;"></p>
+        <p class="detailedch"style="line-height: 1100px; font-size: 30; position: absolute; left: 10%;margin-left: +50px;color:fuchsia; ">正 確 答 案 :</p>
+        <p class="detailedanswerch"style="line-height: 1300px; font-size: 30; position: absolute; left: 10%;margin-left: +90px;color:cadetblue; "></p>
+        
+        <p style="line-height: 500px; font-size: 30; position: absolute; left: 60%;margin-left: +10px;color:cadetblue; ;"><img style="height: 40px; width: 50px; margin-right: 20px" src="./background/bark-close-up-cute-34533.png">英文單字 英文 練習 ~<img style="height: 40px; width: 50px; margin-left: +20px" src="./background/bark-close-up-cute-34533.png"></p>
+        <p style="line-height: 700px; font-size: 30; position: absolute; left: 60%;margin-left: +50px;color:cornflowerblue; -webkit-border-radius:5px; border-radius: 5px; ">Question : </p>
+        <p  class="questioneg"style="line-height: 705px; font-size: 30; position: absolute; left: 80%;margin-left: -20px; color:darksalmon; "></p>
+        <p style="line-height: 900px; font-size: 30; position: absolute; left: 60%;margin-left: +10px;color:cornflowerblue; ">Answer : <input class="answereg" type="text" name="eh" style="margin-left: +50px;background-color: aquamarine;font-size: 30;width: 50%; color:orange; border-radius: 5px;text-align: center;"></p>
+        <p class="detailedeg"style="line-height: 1100px; font-size: 30; position: absolute; left: 70%;margin-left: +10px;color:fuchsia; ">正 確 答 案 :</p>
+        <p class="detailedanswereg"style="line-height: 1300px; font-size: 30; position: absolute; left: 70%;margin-left: +40px;color:cadetblue; "></p>
         </article>
+<!--
    <div id="fb-root"></div>
         <script>(function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
@@ -321,11 +391,12 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
        <div class="fb-comments" data-href="https://stancode2017.github.io/" data-numposts="5"></div>
+-->
     </body>
         
-        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 120px;position: absolute; top:2110px; ">
+        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 140px;position: absolute; top:2800px; ">
           
-            <a href="mailto:appie1236547989@gmail.com" style="color:  rgb(222, 222, 224); cursor: pointer; font-size: 20; line-height: 5 ;padding: 20 ;">聯絡我們 დ</a>
+            <a href="mailto:appie1236547989@gmail.com" style="color:  rgb(222, 222, 224); cursor: pointer; font-size: 20; line-height: 8 ;padding: 20 ;">聯絡我們 დ</a>
         
         </footer>
     
@@ -483,11 +554,18 @@
             color: cadetblue;
 
         }   
-        .detailed
+        .detailedch
         {
             display: none;
         }
-        .detailed1
+        .detailedanswerch
+        {
+            display: none;
+        } .detailedeg
+        {
+            display: none;
+        }
+        .detailedanswereg
         {
             display: none;
         }
