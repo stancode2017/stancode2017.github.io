@@ -198,7 +198,20 @@
                                 
                                 $(".answerch").click(function()
                                     {
-                                       
+                                       console.log(en);
+                                       console.log(ch);
+                                       if ($(".answerch").val()=="0000")
+                                           {
+                                               en="";
+                                               ch="";
+                                               en=["cart","candle","castle","citizen","corner","crane","crayon","customer","damage","desert","development","dessert","dictionary","difference","difficulty","dinosaur","diamond","diary","direction","director","disagreement","discussion","distance","dolphin"];
+                                               ch=["手推車","蠟燭","城堡","市民","角落","起重機","蠟筆","顧客","損害","沙漠","發展","甜點","字典","差異","困難","恐龍","鑽石","日記","方向","導演","不同意","討論","距離","海豚"];
+                                               $(".answerch").val("");
+                                               $(".questionch").text(en[randqch]);
+                                               $(".detailedanswerch").text(ch[randqch]);
+                                               $(".questioneg").text(ch[randqeg]);
+                                               $(".detailedanswereg").text(en[randqeg]);
+                                           }
                                        if(egshow == true)
                                            {
                                                
@@ -274,7 +287,18 @@
                                 }) 
                                 $(".answereg").click(function()
                                     {
-                                       
+                                        if ($(".answereg").val()=="0000")
+                                           {
+                                               en="";
+                                               ch="";
+                                               en=["cart","candle","castle","citizen","corner","crane","crayon","customer","damage","desert","development","dessert","dictionary","difference","difficulty","dinosaur","diamond","diary","direction","director","disagreement","discussion","distance","dolphin"];
+                                               ch=["手推車","蠟燭","城堡","市民","角落","起重機","蠟筆","顧客","損害","沙漠","發展","甜點","字典","差異","困難","恐龍","鑽石","日記","方向","導演","不同意","討論","距離","海豚"];
+                                               $(".answereg").val("");
+                                               $(".questionch").text(en[randqch]);
+                                               $(".detailedanswerch").text(ch[randqch]);
+                                               $(".questioneg").text(ch[randqeg]);
+                                               $(".detailedanswereg").text(en[randqeg]);
+                                           }
                                         if(chshow==true)
                                            {
                                                  
