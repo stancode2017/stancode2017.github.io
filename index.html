@@ -38,13 +38,14 @@
                             $(".questioneg").hide(2000);
                             $(".detailedeg").hide(2000);
                             $(".detailedanswereg").hide(2000);
+                        
                         } 
                     function egshow ()
                         {
-                            $(".egtitle").show(2000);
-                            $(".egsection").show(2000);
-                            $(".questioneg").show(2000);
-                            
+                            $(".egtitle").slideDown(2000);
+                            $(".egsection").slideDown(2000);
+                            $(".questioneg").slideDown(2000);
+                     
                         }
                         
                     function chhide ()
@@ -54,13 +55,14 @@
                               $(".questionch").hide(2000);
                               $(".detailedch").hide(2000);
                               $(".detailedanswerch").hide(2000);
+                         
                         }
                     function chshow ()
                         {
-                              $(".chtitle").show(2000);
-                              $(".chsection").show(2000);
-                              $(".questionch").show(2000);
-                             
+                              $(".chtitle").slideDown(2000);
+                              $(".chsection").slideDown(2000);
+                              $(".questionch").slideDown(2000);
+                              
                         }
                 
             </script>
@@ -106,13 +108,16 @@
              var en = ["hospital","telescope","suburbs"]
              var ch   = ["醫院","望遠鏡","郊區"]
              var chshow = true;
+             var chmove = false;
              var randqch = Math.floor(Math.random()*($(en).length));
              var noactionch=1;
              var detailedsdch=false;
              var correctch   =false;
              var yetchangech=randqch ;
              var egshow = true;
+             var egmove = false;
              var randqeg = Math.floor(Math.random()*($(ch).length));
+             
              do 
                  {
                      randqeg = Math.floor(Math.random()*($(ch).length));
@@ -194,24 +199,29 @@
                                 $(".answerch").click(function()
                                     {
                                        
-                                       if(egshow==true)
+                                       if(egshow == true)
                                            {
+                                               
                                                $(".egtitle").hide(2000);
                                                $(".egsection").hide(2000);
                                                $(".questioneg").hide(2000);
                                                $(".detailedeg").hide(2000);
                                                $(".detailedanswereg").hide(2000);
                                                egshow=false;
+                                           }
+                                             
+                                        if (chmove == false) 
+                                            {
                                                setTimeout('$(".chtitle").animate({left:"+=28%"})',2000)
                                                setTimeout(' $(".chsection").animate({left:"+=28%"})',2000)
                                                setTimeout('$(".questionch").animate({left:"+=28%"})',2000)
                                                setTimeout('$(".detailedch").animate({left:"+=28%"})',2000)
                                                setTimeout('  $(".detailedanswerch").animate({left:"+=28%"})',2000)
-                                              
-                                               
+                                               chmove = true ; 
+                                            }
                                                
                                              
-                                           }
+                                           
                                         correctch=false;
                                         noactionch=1;
                                         if($(".answerch").val())
@@ -267,22 +277,26 @@
                                        
                                         if(chshow==true)
                                            {
+                                                 
                                                $(".chtitle").hide(2000);
                                                $(".chsection").hide(2000);
                                                $(".questionch").hide(2000);
                                                $(".detailedch").hide(2000);
                                                $(".detailedanswerch").hide(2000);
                                                chshow=false;
+                                           }
+                                        if (egmove == false)
+                                            {
                                                setTimeout('$(".egtitle").animate({left:"-=23%"})',2000)
                                                setTimeout(' $(".egsection").animate({left:"-=23%"})',2000)
                                                setTimeout('$(".questioneg").animate({left:"-=22%"})',2000)
                                                setTimeout('$(".detailedeg").animate({left:"-=30%"})',2000)
                                                setTimeout('$(".detailedanswereg").animate({left:"-=30%"})',2000)
-                                              
-                                               
+                                               egmove = true ;
+                                            }
                                                
                                              
-                                           }
+                                           
                                         correcteg=false;
                                         noactioneg=1;
                                         if($(".answereg").val())
@@ -337,8 +351,15 @@
                                     {
                                         $(".answereg").val("");
                                         eghide();
-                                        setTimeout('chshow();',2000)
-                                        if(egshow==true)
+                                        egshow = false;
+                                        if (chshow == false)
+                                            {
+                                                
+                                                setTimeout('chshow();',2000)        
+                                                chshow = true;
+                                            }
+                                        
+                                        if(chmove == false)
                                            {
                                               setTimeout('$(".chtitle").animate({left:"+=28%"})',2000)
                                                setTimeout(' $(".chsection").animate({left:"+=28%"})',2000)
@@ -346,7 +367,7 @@
                                                setTimeout('$(".detailedch").animate({left:"+=28%"})',2000)
                                                setTimeout('  $(".detailedanswerch").animate({left:"+=28%"})',2000)
                                                egshow=false;
-                                               
+                                               chmove = true; 
                                                
                                              
                                            }
@@ -356,9 +377,16 @@
                                     {
                                         $(".answerch").val("");
                                         chhide();
-                                        setTimeout('egshow();',2000)
+                                        chshow = false;
+                                        if (egshow == false)
+                                            {
+                                              
+                                                setTimeout('egshow();',2000)        
+                                                egshow = true;
+                                            }
+                                        
                                          
-                                     if(chshow==true)
+                                     if(egmove == false)
                                            {
                                               
                                                setTimeout('$(".egtitle").animate({left:"-=23%"})',2000)
@@ -366,7 +394,7 @@
                                                setTimeout('$(".questioneg").animate({left:"-=22%"})',2000)
                                                setTimeout('$(".detailedeg").animate({left:"-=30%"})',2000)
                                                setTimeout('$(".detailedanswereg").animate({left:"-=30%"})',2000)
-                                               chshow=false;
+                                               egmove = true;
                                                
                                                
                                              
