@@ -13,7 +13,12 @@
        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="jquery.cycle.all.js"></script>
         <script type="text/javascript" src="imagesloaded-master/imagesloaded.pkgd.min.js"></script>
-        
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
             <script>
                     function fade ()
                         {
@@ -66,6 +71,7 @@
                         }
                 
             </script>
+<!--
            <script>
   window.fbAsyncInit = function() {
             FB.init({
@@ -76,7 +82,7 @@
             });
       
         FB.AppEvents.logPageView();   
-      
+    
         };
 
         (function(d, s, id){
@@ -87,6 +93,7 @@
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
+-->
       
         <script>
         $(document).ready(function() {
@@ -97,7 +104,7 @@
         } 
           
         
-          
+         
             $(".collide").hide();
              var mouse = true;
              var touch = true;
@@ -126,7 +133,7 @@
              var detailedsdeg=false;
              var correcteg   =false;
              var yetchangeeg=randqch ;
-           
+            
             $('.leftline').click(function(){
                 
                     if(Hiden){
@@ -424,10 +431,106 @@
                                              
                                            }
                                 })
-
+                                  var EGpractice =
+                                {
+                                    apiKey: "AIzaSyDT-ug_O75O5oR0rdzsveq5nYhWbt6E9cg",
+                                    authDomain: "projectId.firebaseapp.com",
+                                    databaseURL: "https://appinventortext.firebaseio.com/",
+                                    storageBucket: "bucket.appspot.com",
+                                }
+                                firebase.initializeApp(EGpractice);
+                                var EG = firebase.database().ref("English_practice/English");
+                                var CH = firebase.database().ref("English_practice/Chinese");
+    
+                                EG.on('value', function(data) {
+                                        console.log(data.val());
+                                        en="";
+                                        en= data.val().split(",");
+                                        console.log(en);
+                                });
+                                CH.on('value', function(data) {
+                                        console.log(data.val());
+                                        ch="";
+                                        ch= data.val().split(",");
+                                        console.log(ch);
+                                });
+                            
+                            $(function(){
+                                
+                                var ms=new Date().getTime();
+                                var config =
+                                {
+                                    apiKey: "AIzaSyAPG6WIWoh20SqFyuyAyqUYGkBOUA1WsEA",
+                                    authDomain: "projectId.firebaseapp.com",
+                                    databaseURL: "https://htmlchatroom.firebaseio.com/",
+                                    storageBucket: "bucket.appspot.com",
+                                }
+                                firebase.initializeApp(config);
+                                var database = firebase.database().ref();
+                                $(".sendcontent").click(function(){
+                                    var date = new Date();
+                                    var h = date.getHours();
+                                    var m = date.getMinutes();
+                                    var s = date.getSeconds();
+                                    if (h<10)
+                                        {
+                                            h = "0"+h;
+                                        }
+                                    if(m<10)
+                                        {
+                                            m = "0"+m;
+                                        }
+                                    if(s<10)
+                                        {
+                                            s = "0"+s;
+                                        }
+                                    var now = h+":"+m+":"+s;
+                                    var postData = 
+                                        {
+                                            name:$(".name").val(),
+                                            content:$(".content").val(),
+                                            time:now,
+                                            id:"id"+ms
+                                        };
+                                    database.push(postData);
+                                    $(".content").val("");
+                                    database.once("value",function(snapshot)
+                                    {
+                                                
+                                                $(".chatroom").html("");
+                                               
+                                                for( var i in  snapshot.val())
+                                                    {
+                                                        $(".chatroom").prepend("<div><div>"+snapshot.val()[i].time+"</div>"+snapshot.val()[i].name+"  : "+snapshot.val()[i].content+"</div>");
+                                                        
+                                                    }
+                                    });
+                                    database.limitToLast(1).on("value",function(snapshot)
+                                    {
+                                        
+                                      
+                                        for (   var i in snapshot.val())
+                                            {
+                                                $(".chatroom").prepend('<div class="'+snapshot.val()[i].id+'"<div>'+snapshot.val()[i].time()+'</div>'+snapshot.val()[i].name+"  : "+snapshot.val()[i].content+'</div');
+                                            }
+                                        $(".chatroom").find(".id"+ms).css(
+                                        {
+                                            color: "#f00"
+                                        });
+                                        $("chatroom").find(".id"+ms+" div").css({
+                                            color: "#f00"
+                                        });
+                                    });
+                                            
+                                })
+                            })
+            
+                                
+                                
+                              
                                    
-                        });
-                        
+                       
+                });
              
             
             
@@ -451,13 +554,10 @@
     <body class="body">
         
         
-<!--
          <div class="leftline">
             <section class="leftline_section">
-                <a href="Game.html">
-                    <ul>
-                        <li>江 湖 大 夢 ~ ~</li>
-                    </ul>
+                <a target="_blank" href="https://drive.google.com/open?id=1i6yuyUtjara8RdZigmJDLVl4kf6VtmDa">
+                    <button class="downloadEGpractice" style="border-radius: 5px;background-color: cadetblue;width: 40%;height: 10%;">下載英文單字練習</button>
                 </a>
             </section>
             
@@ -466,7 +566,6 @@
         </div> 
 
         
--->
         
         
         
@@ -551,9 +650,13 @@
             }(document, 'script', 'facebook-jssdk'));</script>
        <div class="fb-comments" data-href="https://stancode2017.github.io/" data-numposts="5"></div>
 -->
+       <div class="chatroom" style="overflow: scroll; width: 100%; height: 300px; background-color: aquamarine;position: absolute;top: 2400px;"></div>
+        <p style="position: absolute;top: 2720px;">Name: <input class="name"></p><br/>
+        <p style="position: absolute;top: 2750px;">Content: <input class="content"></p><br/>
+        <button class="sendcontent" style="position: absolute;top: 2800px;">Send</button><br/>
     </body>
         
-        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 140px;position: absolute; top:2400px; ">
+        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 140px;position: absolute; top:2900px; ">
           
             <a href="mailto:stancode2017@gmail.com" style="color:  rgb(222, 222, 224); cursor: pointer; font-size: 20; line-height: 8 ;padding: 20 ;">聯絡我們 დ</a>
         
@@ -562,6 +665,10 @@
     
     
     <style>
+        body
+        {
+            overflow-x: hidden;
+        }
         .picture-top
         {
             display: none;
