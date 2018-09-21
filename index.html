@@ -446,13 +446,29 @@
                                         console.log(data.val());
                                         en="";
                                         en= data.val().split(",");
+                                        en[0]=en[0].slice(1,en[0].length);
+                                        en[en.length-1]="喝杯茶再繼續吧 ~ ~ ~";
+                                        console.log(en[0][1]);
                                         console.log(en);
+                                        $(".answereg").val("");
+                                        $(".questionch").text(en[randqch]);
+                                        $(".detailedanswerch").text(ch[randqch]);
+                                        $(".questioneg").text(ch[randqeg]);
+                                        $(".detailedanswereg").text(en[randqeg]);
                                 });
                                 CH.on('value', function(data) {
                                         console.log(data.val());
                                         ch="";
                                         ch= data.val().split(",");
+                                        ch[0]=ch[0].slice(1,ch[0].length);
+                                        ch[ch.length-1]="喝杯茶再繼續吧 ~ ~ ~";
+                                        console.log(ch[0].length);
                                         console.log(ch);
+                                        $(".answereg").val("");
+                                        $(".questionch").text(en[randqch]);
+                                        $(".detailedanswerch").text(ch[randqch]);
+                                        $(".questioneg").text(ch[randqeg]);
+                                        $(".detailedanswereg").text(en[randqeg]);
                                 });
                             
                             $(function(){
