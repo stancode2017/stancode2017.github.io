@@ -175,13 +175,14 @@
                               fade();
                          
                          
-                     
+
                                 var image = document.createElement("img");
                                 image.src=$(".text-picture").find("img").filter("."+randp).attr("src")
                                 var height=$(".text-picture").find("img").filter("."+randp).height()
                                 var width=$(".text-picture").find("img").filter("."+randp).width()
                                 image.style.height="500px"
                                 image.style.width="100%"
+//               
                        
                         
                          
@@ -292,7 +293,98 @@
                                             }
                                
                                 }) 
-                                $(".answereg").click(function()
+                            $(".answerch").keydown(function(event)
+                                {
+                                 if(event.which==13)
+                                    {
+                                       console.log(en);
+                                       console.log(ch);
+                                       if ($(".answerch").val()=="0000")
+                                           {
+                                               en="";
+                                               ch="";
+                                               en=["cart","candle","castle","citizen","corner","crane","crayon","customer","damage","desert","development","dessert","dictionary","difference","difficulty","dinosaur","diamond","diary","direction","director","disagreement","discussion","distance","dolphin"];
+                                               ch=["手推車","蠟燭","城堡","市民","角落","起重機","蠟筆","顧客","損害","沙漠","發展","甜點","字典","差異","困難","恐龍","鑽石","日記","方向","導演","不同意","討論","距離","海豚"];
+                                               $(".answerch").val("");
+                                               $(".questionch").text(en[randqch]);
+                                               $(".detailedanswerch").text(ch[randqch]);
+                                               $(".questioneg").text(ch[randqeg]);
+                                               $(".detailedanswereg").text(en[randqeg]);
+                                           }
+                                       if(egshow == true)
+                                           {
+                                               
+                                               $(".egtitle").hide(2000);
+                                               $(".egsection").hide(2000);
+                                               $(".questioneg").hide(2000);
+                                               $(".detailedeg").hide(2000);
+                                               $(".detailedanswereg").hide(2000);
+                                               egshow=false;
+                                           }
+                                             
+                                        if (chmove == false) 
+                                            {
+                                               setTimeout('$(".chtitle").animate({left:"+=28%"})',2000)
+                                               setTimeout(' $(".chsection").animate({left:"+=28%"})',2000)
+                                               setTimeout('$(".questionch").animate({left:"+=28%"})',2000)
+                                               setTimeout('$(".detailedch").animate({left:"+=28%"})',2000)
+                                               setTimeout('  $(".detailedanswerch").animate({left:"+=28%"})',2000)
+                                               chmove = true ; 
+                                            }
+                                               
+                                             
+                                           
+                                        correctch=false;
+                                        noactionch=1;
+                                        if($(".answerch").val())
+                                            {
+                                                if($(".answerch").val()==ch[randqch])
+                                                    {
+                                                        correctch=true;
+                                                        $(".answerch").val("correct!!!").fadeIn(5000)
+                                                    }
+                                                
+                                                if($(".answerch").val()!="correct!!!"&&$(".answerch").val() && detailedsdch==false && correctch==false)
+                                                            {
+                                                                
+                                                                noactionch =0;
+                                                                $(".detailedanswerch").text(ch[randqch])
+                                                                $(".detailedch").slideDown();
+                                                                $(".detailedanswerch").slideDown();
+                                                                 detailedsdch=true;
+                                                            }
+                                                    
+                                            
+                                                
+                                                if(detailedsdch==true)
+                                                    {
+                                                        if(noactionch==1)
+                                                            {
+                                                            $(".detailedch").slideUp();
+                                                            $(".detailedanswerch").slideUp();
+                                                            do
+                                                            {randqch=Math.floor(Math.random()*            ($(en).length));
+                                                            }while(randqch==yetchangech)               
+                                                            yetchangech=randqch;
+                                                            $(".questionch").text(en[randqch])
+                                                            $(".answerch").val("")
+                                                            detailedsdch=false
+                                                            }
+                                                    }
+                                                if($(".answerch").val()=="correct!!!" && correctch==false)
+                                                    {
+                                                        do
+                                                            {randqch=Math.floor(Math.random()*            ($(en).length));
+                                                            }while(randqch==yetchangech)
+                                                        yetchangech=randqch;
+                                                         $(".questionch").text(en[randqch])
+                                                          $(".detailedanswerch").text(ch[randqch])
+                                                        $(".answerch").val("")
+                                                    }
+                                            }
+                                    }
+                                }) 
+                             $(".answereg").click(function()
                                     {
                                         if ($(".answereg").val()=="0000")
                                            {
@@ -378,6 +470,97 @@
                                             }
                                
                                 })
+                                $(".answereg").keydown(function(event)
+                                    {
+                                    if(event.which==13)
+                                    {
+                                        if ($(".answereg").val()=="0000")
+                                           {
+                                               en="";
+                                               ch="";
+                                               en=["cart","candle","castle","citizen","corner","crane","crayon","customer","damage","desert","development","dessert","dictionary","difference","difficulty","dinosaur","diamond","diary","direction","director","disagreement","discussion","distance","dolphin"];
+                                               ch=["手推車","蠟燭","城堡","市民","角落","起重機","蠟筆","顧客","損害","沙漠","發展","甜點","字典","差異","困難","恐龍","鑽石","日記","方向","導演","不同意","討論","距離","海豚"];
+                                               $(".answereg").val("");
+                                               $(".questionch").text(en[randqch]);
+                                               $(".detailedanswerch").text(ch[randqch]);
+                                               $(".questioneg").text(ch[randqeg]);
+                                               $(".detailedanswereg").text(en[randqeg]);
+                                           }
+                                        if(chshow==true)
+                                           {
+                                                 
+                                               $(".chtitle").hide(2000);
+                                               $(".chsection").hide(2000);
+                                               $(".questionch").hide(2000);
+                                               $(".detailedch").hide(2000);
+                                               $(".detailedanswerch").hide(2000);
+                                               chshow=false;
+                                           }
+                                        if (egmove == false)
+                                            {
+                                               setTimeout('$(".egtitle").animate({left:"-=23%"})',2000)
+                                               setTimeout(' $(".egsection").animate({left:"-=23%"})',2000)
+                                               setTimeout('$(".questioneg").animate({left:"-=22%"})',2000)
+                                               setTimeout('$(".detailedeg").animate({left:"-=30%"})',2000)
+                                               setTimeout('$(".detailedanswereg").animate({left:"-=30%"})',2000)
+                                               egmove = true ;
+                                            }
+                                               
+                                             
+                                           
+                                        correcteg=false;
+                                        noactioneg=1;
+                                        if($(".answereg").val())
+                                            {
+                                                if($(".answereg").val()==en[randqeg])
+                                                    {
+                                                        correcteg=true;
+                                                        $(".answereg").val("correct!!!").fadeIn(5000)
+                                                    }
+                                                
+                                                if($(".answereg").val()!="correct!!!"&&$(".answereg").val() && detailedsdeg==false && correcteg==false)
+                                                            {
+                                                                
+                                                                noactioneg =0;
+                                                                $(".detailedanswereg").text(en[randqeg])
+                                                                $(".detailedeg").slideDown();
+                                                                $(".detailedanswereg").slideDown();
+                                                                 detailedsdeg=true;
+                                                            }
+                                                    
+                                            
+                                                
+                                                if(detailedsdeg==true)
+                                                    {
+                                                        if(noactioneg==1)
+                                                            {
+                                                            $(".detailedeg").slideUp();
+                                                            $(".detailedanswereg").slideUp();
+                                                            do
+                                                            {randqeg=Math.floor(Math.random()*            ($(ch).length));
+                                                            }while(randqeg==yetchangeeg)               
+                                                            yetchangeeg=randqeg;
+                                                            $(".questioneg").text(ch[randqeg])
+                                                            $(".answereg").val("")
+                                                            detailedsdeg=false
+                                                            }
+                                                    }
+                                                if($(".answereg").val()=="correct!!!" && correcteg==false)
+                                                    {
+                                                        do
+                                                            {randqeg=Math.floor(Math.random()*            ($(ch).length));
+                                                            }while(randqeg==yetchangeeg)
+                                                        yetchangeeg=randqeg;
+                                                         $(".questioneg").text(ch[randqeg])
+                                                          $(".detailedanswereg").text(en[randqeg])
+                                                        $(".answereg").val("");
+                                                    }
+                                            }
+                                    }
+                               
+                                })
+                                
+            
                                 $(".chbtn").click(function()
                                     {
                                         $(".answereg").val("");
@@ -471,75 +654,75 @@
                                         $(".detailedanswereg").text(en[randqeg]);
                                 });
                             
-                            $(function(){
-                                
-                                var ms=new Date().getTime();
-                                var config =
-                                {
-                                    apiKey: "AIzaSyAPG6WIWoh20SqFyuyAyqUYGkBOUA1WsEA",
-                                    authDomain: "projectId.firebaseapp.com",
-                                    databaseURL: "https://htmlchatroom.firebaseio.com/",
-                                    storageBucket: "bucket.appspot.com",
-                                }
-                                firebase.initializeApp(config);
-                                var database = firebase.database().ref();
-                                $(".sendcontent").click(function(){
-                                    var date = new Date();
-                                    var h = date.getHours();
-                                    var m = date.getMinutes();
-                                    var s = date.getSeconds();
-                                    if (h<10)
-                                        {
-                                            h = "0"+h;
-                                        }
-                                    if(m<10)
-                                        {
-                                            m = "0"+m;
-                                        }
-                                    if(s<10)
-                                        {
-                                            s = "0"+s;
-                                        }
-                                    var now = h+":"+m+":"+s;
-                                    var postData = 
-                                        {
-                                            name:$(".name").val(),
-                                            content:$(".content").val(),
-                                            time:now,
-                                            id:"id"+ms
-                                        };
-                                    database.push(postData);
-                                    $(".content").val("");
-                                    database.once("value",function(snapshot)
-                                    {
-                                                
-                                                $(".chatroom").html("");
-                                               
-                                                for( var i in  snapshot.val())
-                                                    {
-                                                        $(".chatroom").prepend("<div><div>"+snapshot.val()[i].time+"</div>"+snapshot.val()[i].name+"  : "+snapshot.val()[i].content+"</div>");
-                                                        
-                                                    }
-                                    });
-                                    database.limitToLast(1).on("value",function(snapshot)
-                                    {
-                                        
-                                      
-                                        for (   var i in snapshot.val())
-                                            {
-                                                $(".chatroom").prepend('<div class="'+snapshot.val()[i].id+'"<div>'+snapshot.val()[i].time()+'</div>'+snapshot.val()[i].name+"  : "+snapshot.val()[i].content+'</div');
-                                            }
-                                        $(".chatroom").find(".id"+ms).css(
-                                        {
-                                            color: "#f00"
-                                        });
-                                        $("chatroom").find(".id"+ms+" div").css({
-                                            color: "#f00"
-                                        });
-                                    });
-                                            
-                                })
-                            })
+//                            $(function(){
+//                                
+//                                var ms=new Date().getTime();
+//                                var config =
+//                                {
+//                                    apiKey: "AIzaSyAPG6WIWoh20SqFyuyAyqUYGkBOUA1WsEA",
+//                                    authDomain: "projectId.firebaseapp.com",
+//                                    databaseURL: "https://htmlchatroom.firebaseio.com/",
+//                                    storageBucket: "bucket.appspot.com",
+//                                }
+//                                firebase.initializeApp(config);
+//                                var database = firebase.database().ref();
+//                                $(".sendcontent").click(function(){
+//                                    var date = new Date();
+//                                    var h = date.getHours();
+//                                    var m = date.getMinutes();
+//                                    var s = date.getSeconds();
+//                                    if (h<10)
+//                                        {
+//                                            h = "0"+h;
+//                                        }
+//                                    if(m<10)
+//                                        {
+//                                            m = "0"+m;
+//                                        }
+//                                    if(s<10)
+//                                        {
+//                                            s = "0"+s;
+//                                        }
+//                                    var now = h+":"+m+":"+s;
+//                                    var postData = 
+//                                        {
+//                                            name:$(".name").val(),
+//                                            content:$(".content").val(),
+//                                            time:now,
+//                                            id:"id"+ms
+//                                        };
+//                                    database.push(postData);
+//                                    $(".content").val("");
+//                                    database.once("value",function(snapshot)
+//                                    {
+//                                                
+//                                                $(".chatroom").html("");
+//                                               
+//                                                for( var i in  snapshot.val())
+//                                                    {
+//                                                        $(".chatroom").prepend("<div><div>"+snapshot.val()[i].time+"</div>"+snapshot.val()[i].name+"  : "+snapshot.val()[i].content+"</div>");
+//                                                        
+//                                                    }
+//                                    });
+//                                    database.limitToLast(1).on("value",function(snapshot)
+//                                    {
+//                                        
+//                                      
+//                                        for (   var i in snapshot.val())
+//                                            {
+//                                                $(".chatroom").prepend('<div class="'+snapshot.val()[i].id+'"<div>'+snapshot.val()[i].time()+'</div>'+snapshot.val()[i].name+"  : "+snapshot.val()[i].content+'</div');
+//                                            }
+//                                        $(".chatroom").find(".id"+ms).css(
+//                                        {
+//                                            color: "#f00"
+//                                        });
+//                                        $("chatroom").find(".id"+ms+" div").css({
+//                                            color: "#f00"
+//                                        });
+//                                    });
+//                                            
+//                                })
+//                            })
             
                                 
                                 
@@ -610,7 +793,10 @@
             
                 
             </div>
+
             <div class="text-picture" data-width=1000 data-height=500>
+<!--
+            <!--        平常用-->
                 <img  class="0" src="background/adventure-alpine-altitude-355241.png" style="height: 500px;width: 100%;">
                 <img  class="1"src="background/abendstimmung-atmospheric-background-531872.png" style="height: 500px;width: 100%;">
                 <img  class="2" src="background/adventure-alps-background-207195.png" style="height: 500px;width: 100%;">
@@ -622,11 +808,18 @@
                 <img  class="8" src="background/beach-coast-idyllic-162969.png" style="height: 500px;width: 100%;">
                 <img  class="9" src="background/cascade-clouds-cool-wallpaper-210186.png" style="height: 500px;width: 100%;">
                 <img  class="10" src="background/clouds-country-daylight-371633.png" style="height: 500px;width: 100%;">
-              
-        
-        
+-->
+<!--            聖誕節用        -->                
+<!--
+                <img  class="0" src="christmasbackground/background-beautiful-bokeh-1028724.png" style="height: 500px;width: 100%;">
+                <img  class="1"src="christmasbackground/christmas-2869817_1920.png" style="height: 500px;width: 100%;">
+                <img  class="2" src="christmasbackground/christmas-2931358_1920.png" style="height: 500px;width: 100%;">
+                <img  class="3" src="christmasbackground/christmas-motif-2938558_1920.png" style="height: 500px;width: 100%;">
+                <img  class="4" src="christmasbackground/winter-3758369_1920.png" style="height: 500px;width: 100%;">
+-->
             </div>
-        
+
+             
         
         <article style="height:1800px;width: 100%; background: rgba(244, 185, 66,0.3);position: absolute;top: 600px;" >
            
@@ -666,13 +859,15 @@
             }(document, 'script', 'facebook-jssdk'));</script>
        <div class="fb-comments" data-href="https://stancode2017.github.io/" data-numposts="5"></div>
 -->
+<!--
        <div class="chatroom" style="overflow: scroll; width: 100%; height: 300px; background-color: aquamarine;position: absolute;top: 2400px;"></div>
         <p style="position: absolute;top: 2720px;">Name: <input class="name"></p><br/>
         <p style="position: absolute;top: 2750px;">Content: <input class="content"></p><br/>
         <button class="sendcontent" style="position: absolute;top: 2800px;">Send</button><br/>
+-->
     </body>
         
-        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 140px;position: absolute; top:2900px; ">
+        <footer  class="footer"style="background:rgb(31, 31, 35); width: 100%; height: 140px;position: absolute; top:2400px; ">
           
             <a href="mailto:stancode2017@gmail.com" style="color:  rgb(222, 222, 224); cursor: pointer; font-size: 20; line-height: 8 ;padding: 20 ;">聯絡我們 დ</a>
         
