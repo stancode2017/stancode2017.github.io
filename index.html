@@ -124,7 +124,8 @@
              var egshow = true;
              var egmove = false;
              var randqeg = Math.floor(Math.random()*($(ch).length));
-             
+             var onlineref=""; 
+            
              do 
                  {
                      randqeg = Math.floor(Math.random()*($(ch).length));
@@ -624,7 +625,8 @@
                                 firebase.initializeApp(EGpractice);
                                 var EG = firebase.database().ref("English_practice/English");
                                 var CH = firebase.database().ref("English_practice/Chinese");
-    
+                                var ref= firebase.database().ref("onlineref");               
+            
                                 EG.on('value', function(data) {
                                         console.log(data.val());
                                         en="";
@@ -652,6 +654,10 @@
                                         $(".detailedanswerch").text(ch[randqch]);
                                         $(".questioneg").text(ch[randqeg]);
                                         $(".detailedanswereg").text(en[randqeg]);
+                                });
+                                ref.on('value', function(data) {
+                                        console.log(data.val());
+                                        onlineref=data.val();
                                 });
                             
 //                            $(function(){
@@ -758,8 +764,8 @@
                 <a target="_blank" href="https://drive.google.com/open?id=1tB63Y_8wuytkztEIdOKgl_TVHs_uqjih">
                     <button class="downloadEGpractice" style="border-radius: 5px;background-color: cadetblue;width: 40%;height: 10%;">下載英文單字練習</button>
                 </a>
-                <a target="_blank" href="https://drive.google.com/open?id=1y1JROfSV5lM9vzbOyzabpyoZ_m3qWs6l">
-                    <button class="downloadEGpractice" style="border-radius: 5px;background-color: cadetblue;width: 40%;height: 10%;">地理作業</button>
+                <a target="_blank" href="https://drive.google.com/file/d/11_dEe4_WMS1WDsxc3fyRgo0wFDhPcCf8/view?usp=sharing">
+                    <button class="downloadEGpractice" style="border-radius: 5px;background-color: cadetblue;width: 40%;height: 10%;">作業</button>
                 </a>
             </section>
             
