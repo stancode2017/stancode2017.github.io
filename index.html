@@ -623,7 +623,8 @@
                                 firebase.initializeApp(EGpractice);
                                 var EG = firebase.database().ref("English_practice/English");
                                 var CH = firebase.database().ref("English_practice/Chinese");
-                                var ref= firebase.database().ref("onlineref");               
+                                var ref= firebase.database().ref("onlineref");  
+                                var title=firebase.database().ref("title");  
             
                                 EG.on('value', function(data) {
                                         console.log(data.val());
@@ -666,7 +667,18 @@
                                         $(".leftline_section").append(onlineref);
                 
                                 });
+                                title.on('value', function(data) {
+                                        console.log(data.val());
+                                        var onlinetitle=document.createElement("a");
+                                        onlinetitle.innerHTML=data.val();
+                                        onlinetitle.className="headtitle_a";
+                                        onlinetitle.href="index.html";
+                                       // onlineref.style.backgroundColor="cadetblue";
+                                        $(".headtitle").append(onlinetitle);
+                
+                                });
                                 
+
                             
 //                            $(function(){
 //                                
@@ -759,8 +771,10 @@
                    
             </div>
     <div class="headtitle">
+<!--
         <a 
            class="headtitle_a" href="index.html" >哆 啦 哆 哆 啦</a>
+-->
         
         </div>
     <body class="body">
