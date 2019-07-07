@@ -623,8 +623,10 @@
                                 firebase.initializeApp(EGpractice);
                                 var EG = firebase.database().ref("English_practice/English");
                                 var CH = firebase.database().ref("English_practice/Chinese");
-                                var ref= firebase.database().ref("onlineref");  
-                                var title=firebase.database().ref("title");  
+                                var applink=firebase.database().ref("applink");
+                                var ref= firebase.database().ref("onlineref");               
+                                var title=firebase.database().ref("title"); 
+                                var introdction=firebase.database().ref("introdction"); 
             
                                 EG.on('value', function(data) {
                                         console.log(data.val());
@@ -654,22 +656,37 @@
                                         $(".questioneg").text(ch[randqeg]);
                                         $(".detailedanswereg").text(en[randqeg]);
                                 });
+                                applink.on('value', function(data) {
+                                        console.log(data.val());
+                                        var onlineapp=document.createElement("a");
+                                        onlineapp.href="";
+                                        onlineapp.href=data.val();
+                                        onlineapp.className="applink";
+                                        onlineapp.target="_blank";
+                                        $(".leftline_section").append(onlineapp);
+                                        var appbutton=document.createElement("button");
+                                        appbutton.className="linkbutton";
+                                        appbutton.innerHTML="APP";
+                                        $(".applink").append(appbutton);
+                                });
                                 ref.on('value', function(data) {
                                         console.log(data.val());
                                         workref=data.val();
                                         var onlineref=document.createElement("a");
-                                        onlineref.innerHTML="REPORT";
+                                        onlineref.href="";
                                         onlineref.href=data.val();
+                                        onlineref.className="homeworklink";
                                         onlineref.target="_blank";
-                                        onlineref.style.fontSize="20";
-                                        onlineref.style.borderRadius="5px";
-                                       // onlineref.style.backgroundColor="cadetblue";
                                         $(".leftline_section").append(onlineref);
-                
+                                        var refbutton=document.createElement("button");
+                                        refbutton.className="linkbutton";
+                                        refbutton.innerHTML="REPORT";
+                                        $(".homeworklink").append(refbutton);
                                 });
                                 title.on('value', function(data) {
                                         console.log(data.val());
                                         var onlinetitle=document.createElement("a");
+                                        onlinetitle.innerHTML="";
                                         onlinetitle.innerHTML=data.val();
                                         onlinetitle.className="headtitle_a";
                                         onlinetitle.href="index.html";
@@ -677,8 +694,17 @@
                                         $(".headtitle").append(onlinetitle);
                 
                                 });
-                                
-
+                                introdction.on('value', function(data) {
+                                        console.log(data.val());
+                                        var introdctionlink=document.createElement("p");
+                                        introdctionlink.innerHTML="";
+                                        introdctionlink.innerHTML=data.val();
+                                        introdctionlink.className="introdction";
+                                        introdctionlink.fontSize="10";
+                                        $("introdction").css.lineHeight="100";
+                                        $(".introdctionsection").append(introdctionlink);
+                
+                                });
                             
 //                            $(function(){
 //                                
@@ -782,14 +808,17 @@
         
          <div class="leftline">
             <section class="leftline_section">
+<!--
                 <a target="_blank" href="https://drive.google.com/open?id=1tB63Y_8wuytkztEIdOKgl_TVHs_uqjih">
                     <button class="downloadEGpractice" style="border-radius: 5px;background-color: cadetblue;width: 40%;height: 10%;">下載英文單字練習</button>
                 </a>
+-->
 <!--
                 <a target="_blank" class="homeworklink" href="">
                     <button class="downloadEGpractice" style="border-radius: 5px;background-color: cadetblue;width: 40%;height: 10%;">作業</button>
                 </a>
 -->
+                
             </section>
             
         
@@ -855,10 +884,10 @@
         
         <article style="height:1800px;width: 100%; background: rgba(244, 185, 66,0.3);position: absolute;top: 600px;" >
            
-            <section style="background: rgba(200, 244, 66,0.4); height: 400px; width: 35%; text-align:center">
+            <section class="introdctionsection" style="background: rgba(200, 244, 66,0.4); height: 400px; width: 35%; text-align:center">
             <h1 style="background: pink; color: gray; width: 15%;height: 50px;line-height: 3;">簡介</h1>
              
-                <p style="line-height: 15;color: cornflowerblue;"> 飄 飄 ~ ~ ~  </p>
+<!--                <p style="line-height: 15;color: cornflowerblue;"> 飄 飄 ~ ~ ~  </p>-->
                
             </section>
             <button class="chbtn" style=" font-size: 20; font-weight: 900 ; position: absolute;top: 430px;left: 20px; height: 50px; width: 50px; border-radius: 100px;box-shadow:8px 8px 5px rgba(249, 204, 234,0.8),-4px 10px 2px rgba(244, 166, 166,0.5),2px -6px 5px rgba(0%,0%,100%,0.2); border-style:outset;   background-color: aquamarine; color: plum;"> 中 </button>
@@ -1045,12 +1074,6 @@
 	       z-index:1;
            top:20%;
 	       left:-390px;
-     
-          
-	       
-
-
-         
         }
         .leftline_section
         {
@@ -1063,6 +1086,15 @@
             color: cadetblue;
 
         }   
+        .linkbutton
+        {
+            border-radius: 5px;
+            background: cadetblue;
+            width: 40%;
+            height: 10%;
+            font-size: 15;
+            text-align: center;
+        }
         .detailedch
         {
             display: none;
