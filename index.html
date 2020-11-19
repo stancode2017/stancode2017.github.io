@@ -700,8 +700,9 @@
                                         introdctionlink.innerHTML="";
                                         introdctionlink.innerHTML=data.val();
                                         introdctionlink.className="introdction";
-                                        introdctionlink.fontSize="10";
-                                        $("introdction").css.lineHeight="100";
+                                        introdctionlink.style.color="rgb(255,255,255)";
+                                        introdctionlink.style.fontSize="25px";
+                                        $("introdction").css.lineHeight="30px";
                                         $(".introdctionsection").append(introdctionlink);
                 
                                 });
@@ -882,10 +883,10 @@
 
              
         
-        <article style="height:1800px;width: 100%; background: rgba(244, 185, 66,0.3);position: absolute;top: 600px;" >
+        <article style="height:1800px;width: 100%; background: rgba(247, 241, 188);position: absolute;top: 600px;" >
            
-            <section class="introdctionsection" style="background: rgba(200, 244, 66,0.4); height: 400px; width: 35%; text-align:center">
-            <h1 style="background: pink; color: gray; width: 15%;height: 50px;line-height: 3;">簡介</h1>
+            <section class="introdctionsection" style="background: rgba(162, 200, 184); height: 400px; width: 35%; text-align:center;top: 0px">
+            <h2 style="background: rgba(162, 200, 184); color: white; width: 15%;height: 50px;line-height: 3;">簡介</h2>
              
 <!--                <p style="line-height: 15;color: cornflowerblue;"> 飄 飄 ~ ~ ~  </p>-->
                
@@ -1035,10 +1036,10 @@
         }
         .headtitle
         {
-            background: skyblue;
+            background: rgb(162, 242, 184);
             height: 60px;
             width: 100%;
-            border-style: outset;
+/*            border-style: outset;*/
             border-width: 5;
             border-radius: 10px;
             text-align: center;
@@ -1050,9 +1051,9 @@
         {
             
             -webkit-text-stroke:0.3px white;
-            color: pink ;
-         
-           
+            color: white ;
+            border-width: 10;
+            border-radius: 10px;
             font-size: 40;
             font-family:DFKai-sb;
             line-height: 150% ;
