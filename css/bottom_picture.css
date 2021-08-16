@@ -1,0 +1,20 @@
+.masthead{
+    min-height:40rem;
+    position:relative;
+    display:table;
+    width:100%;
+    height:auto;
+    background:-webkit-gradient(linear,left top,right top,color-stop(0,rgba(206, 159, 252,.2)),to(rgba(115, 103, 240,.5))) fixed;
+    background-repeat:no-repeat;
+    background-size:cover
+}
+.bg-about{
+    min-height:38rem;
+    position:relative;
+    display:table;
+    width:100%;
+    height:auto;
+    background:linear-gradient(90deg,rgba(166, 222, 214,.2),rgba(166, 222, 214,.5),rgba(166, 222, 214,.8)) fixed;
+    background-repeat:no-repeat;
+    background-size:cover
+}

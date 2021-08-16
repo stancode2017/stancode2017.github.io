@@ -1,0 +1,10 @@
+.carousel_right_p
+{
+    display: inline-block;
+    width: 30rem;
+    padding-top: 13rem;
+    padding-left: 5rem;
+    color: black;
+    font-weight: bold;
+    float: left;
+}

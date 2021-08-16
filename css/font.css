@@ -1,0 +1,5 @@
+@font-face{font-family:NothingYouCouldDo;src:url(../fonts/NothingYouCouldDo.ttf?srf3rx)format("truetype");font-weight:400;font-style:normal}
+.font_nothingyoucoulddo{font-family: NothingYouCouldDo;}
+
+@font-face{font-family:PaletteMosaic-Regular;src:url(../fonts/PaletteMosaic-Regular.ttf)format("truetype");font-weight:400;font-style:normal}
+.font_PaletteMosaic-Regular{font-family: PaletteMosaic-Regular;}
