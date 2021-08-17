@@ -1,15 +1,16 @@
 .carousel_container
 {
-    height: 38rem;
-    width: 38rem;
+    height: 38vh;
+    width: 38vw;
     display: inline-block;
     float: left;
+    margin-top: 25vh;
+    margin-left: 10vw;
 }
 .carousel .carousel-item {
-    height: 38rem;
-    width: 38rem;
-    padding-top: 10rem;
-    padding-left: 5rem;
+    height: 100%;
+    width: 100%;
+
 }
 
 /*
